@@ -23,7 +23,6 @@ spec:
                     operator: In
                     values:
                       - us-east-1b
-                      - us-east-1a
       containers:
         - name: vprodb
           image: vprofile/vprofiledb:V1
