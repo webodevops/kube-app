@@ -14,6 +14,16 @@ spec:
       labels:
         app: vprodb
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: topology.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - us-east-1b
+                      - us-east-1a
       containers:
         - name: vprodb
           image: vprofile/vprofiledb:V1
@@ -31,8 +41,6 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
-      nodeSelector:
-        zones: us-east-1
       volumes:
         - name: vpro-db-data
           awsElasticBlockStore:
