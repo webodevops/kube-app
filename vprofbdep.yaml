@@ -31,6 +31,10 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
+          tolerations:
+            - key: "node-role.kubernetes.io/master"
+              effect: "NoSchedule"
+              operator: "Exists"
       nodeSelector:
         zones: us-east-1a
       volumes:
